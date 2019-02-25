@@ -16,13 +16,12 @@
 
 Most programming languages have libraries or modules that allow your program to dynamically interact with information stored in a database.  With our end-goal in mind we are going to use the *Node.js* framework.  The reason we are using Node.js is because a lot of infrastructure on the web is built around JavaScript.  The node website explains itself well:
 
-```
-Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses 
+
+>Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses 
 an event-driven, non-blocking I/O model that makes it lightweight and efficient. 
 
-Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries 
+>Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries 
 in the world.
-```
 
 Node.js (along with various packages) will allows us to
 * Create code that changes the contents of your database
@@ -77,7 +76,7 @@ node showDatabases.js
 
 First the **credentials.json** file:
 
-```{json}
+```json
 {
 "user" : "testy_pete",
 "password" : "not really my password"
@@ -86,7 +85,7 @@ First the **credentials.json** file:
 
 And now for all the magic in **showDatabases.js**:
 
-```{js}
+```js
 var credentials = require('./credentials.json');
 
 var mysql=require("mysql");
@@ -107,8 +106,9 @@ connection.query('SHOW DATABASES',function(err,rows,fields){
     console.log('Error looking up databases');
   } else {
     console.log('Returned values were ',rows);
-}
+  }
 });
+
 connection.end()
 console.log("All done now.");
 ```
@@ -143,7 +143,7 @@ If you see alot of databases then you did not properly restrict your accounts `G
 If you pay close attention to the output you might notice something a bit odd:  The output *All done now.* appears before everything else.  What's up with that?
 
 Let me simplify the code a bit:
-```{js}
+```js
 connection=<setup>;
 connection.connect(function(err){...});
 connection.query('SHOW DATABASES',function(err,rows,fields){...});
